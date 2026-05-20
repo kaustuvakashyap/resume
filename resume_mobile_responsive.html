@@ -1,0 +1,290 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap');
+:root{--copper:#C59C79;--blackberry:#48192E;--kurobeni:#281822;--meadow:#957083;--copper-light:#e8d5c0;--copper-pale:#f5ede3;--grid-color:#c8b8d0;}
+*{box-sizing:border-box;margin:0;padding:0;}
+.resume-wrap{font-family:'DM Sans',sans-serif;background:var(--copper-pale);min-height:100vh;padding:16px 10px 40px;position:relative;overflow:hidden;}
+.grid-bg{position:absolute;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--grid-color) 1px,transparent 1px),linear-gradient(90deg,var(--grid-color) 1px,transparent 1px);background-size:28px 28px;opacity:0.35;}
+.corner-tl{position:absolute;top:0;left:0;width:100px;height:100px;background:var(--blackberry);z-index:1;opacity:0.92;clip-path:polygon(0 0,100% 0,0 100%);}
+.corner-br{position:absolute;bottom:0;right:0;width:120px;height:120px;background:var(--blackberry);z-index:1;opacity:0.92;clip-path:polygon(100% 0,100% 100%,0 100%);}
+.deco-star{position:absolute;z-index:2;color:var(--copper);user-select:none;}
+.deco-circle{position:absolute;z-index:2;border-radius:50%;border:2px solid var(--meadow);opacity:0.5;}
+.os-window{position:relative;z-index:10;max-width:680px;margin:0 auto;}
+.titlebar{background:var(--blackberry);border-radius:10px 10px 0 0;padding:9px 14px;display:flex;align-items:center;gap:8px;}
+.tb-dot{width:11px;height:11px;border-radius:50%;}
+.tb-red{background:#e57373;}.tb-yellow{background:#f9c74f;}.tb-green{background:#90be6d;}
+.tb-title{flex:1;text-align:center;font-family:'DM Mono',monospace;font-size:10px;color:var(--copper-light);letter-spacing:0.15em;text-transform:uppercase;}
+.window-body{background:rgba(245,237,227,0.92);border:1.5px solid var(--copper);border-top:none;border-radius:0 0 10px 10px;padding:20px 16px 28px;}
+.profile-section{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;margin-bottom:20px;}
+.profile-info{flex:1;min-width:180px;}
+.profile-name{font-family:'Playfair Display',serif;font-size:clamp(22px,5vw,32px);font-weight:700;color:var(--kurobeni);line-height:1.1;margin-bottom:4px;letter-spacing:-0.5px;}
+.profile-title{font-family:'DM Mono',monospace;font-size:11px;color:var(--meadow);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;}
+.contact-row{display:flex;flex-wrap:wrap;gap:5px 12px;}
+.contact-chip{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--blackberry);font-family:'DM Mono',monospace;}
+.contact-chip i{font-size:13px;color:var(--copper);}
+.avatar-frame{width:76px;height:76px;border-radius:50%;border:3px solid var(--copper);background:var(--copper-light);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--blackberry);flex-shrink:0;}
+.divider{height:1.5px;background:linear-gradient(90deg,var(--copper) 0%,var(--meadow) 60%,transparent 100%);margin:16px 0;border:none;}
+.panel{border:1.5px solid var(--copper-light);border-radius:8px;margin-bottom:14px;overflow:hidden;}
+.panel-header{background:var(--blackberry);padding:7px 12px;display:flex;align-items:center;justify-content:space-between;}
+.panel-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--copper-light);letter-spacing:0.16em;text-transform:uppercase;}
+.panel-icons{display:flex;gap:5px;}
+.panel-icon{width:9px;height:9px;border-radius:50%;background:var(--meadow);opacity:0.6;}
+.panel-body{padding:14px;background:rgba(255,255,255,0.45);}
+.two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:14px;}
+.about-text{font-size:13px;line-height:1.7;color:var(--kurobeni);}
+.skill-grid{display:flex;flex-direction:column;gap:8px;}
+.skill-row{display:flex;align-items:center;gap:8px;}
+.skill-name{font-size:11px;color:var(--blackberry);font-family:'DM Mono',monospace;min-width:95px;}
+.skill-bar-track{flex:1;height:5px;background:var(--copper-light);border-radius:3px;overflow:hidden;}
+.skill-bar-fill{height:100%;border-radius:3px;background:var(--copper);}
+.course-tag{display:inline-block;padding:4px 9px;margin:3px 3px 3px 0;background:var(--copper-pale);border:1px solid var(--copper);border-radius:20px;font-size:11px;color:var(--blackberry);font-family:'DM Mono',monospace;}
+.cert-two-col{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.cert-card{background:rgba(255,255,255,0.55);border-radius:6px;border-left:3px solid var(--copper);padding:12px;}
+.cert-name{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:var(--blackberry);margin-bottom:3px;}
+.cert-issuer{font-family:'DM Mono',monospace;font-size:10px;color:var(--meadow);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;}
+.cert-type-pill{display:inline-block;padding:3px 9px;background:var(--blackberry);color:var(--copper-light);border-radius:3px;font-size:10px;font-family:'DM Mono',monospace;}
+.badges-count{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--copper);line-height:1;}
+.badges-label{font-family:'DM Mono',monospace;font-size:10px;color:var(--meadow);text-transform:uppercase;letter-spacing:0.1em;line-height:1.4;}
+.badge-grid{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.badge-dot{width:26px;height:26px;border-radius:50%;background:var(--blackberry);border:2px solid var(--copper);display:flex;align-items:center;justify-content:center;}
+.badge-dot i{font-size:12px;color:var(--copper-light);}
+.gc-tag{display:inline-flex;align-items:center;gap:5px;padding:3px 9px;background:var(--copper-pale);border:1px solid var(--copper-light);border-radius:20px;font-size:10px;font-family:'DM Mono',monospace;color:var(--blackberry);margin-top:8px;}
+.project-card{background:rgba(255,255,255,0.55);border-radius:6px;border-left:3px solid var(--copper);padding:12px;margin-bottom:10px;}
+.project-card:last-child{margin-bottom:0;}
+.project-name{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:var(--blackberry);margin-bottom:3px;}
+.project-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:10px;color:var(--copper);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:6px;}
+.project-desc{font-size:12px;line-height:1.65;color:var(--kurobeni);}
+.tech-pill{display:inline-block;padding:3px 8px;margin:5px 3px 0 0;background:var(--blackberry);color:var(--copper-light);border-radius:3px;font-size:10px;font-family:'DM Mono',monospace;}
+.edu-block{display:flex;align-items:flex-start;gap:12px;}
+.edu-year{font-family:'DM Mono',monospace;font-size:10px;color:var(--meadow);min-width:52px;padding-top:2px;line-height:1.4;}
+.edu-name{font-size:13px;font-weight:500;color:var(--blackberry);}
+.edu-sub{font-size:11px;color:var(--meadow);font-family:'DM Mono',monospace;}
+.portfolio-bar{background:var(--blackberry);border-radius:6px;padding:10px 14px;margin-top:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.portfolio-text{font-family:'DM Mono',monospace;font-size:10px;color:var(--copper-light);letter-spacing:0.1em;}
+.portfolio-link{font-family:'DM Mono',monospace;font-size:10px;color:var(--copper);margin-left:auto;}
+
+/* ── LINK BUTTONS ── */
+.link-btn{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:10px;padding:5px 12px;
+  background:transparent;
+  border:1.5px solid var(--copper);
+  border-radius:4px;
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--blackberry);
+  text-decoration:none;
+  cursor:pointer;
+  transition:background 0.18s,color 0.18s;
+}
+.link-btn:hover{background:var(--blackberry);color:var(--copper-light);}
+.link-btn i{font-size:12px;color:var(--copper);}
+.link-btn:hover i{color:var(--copper-light);}
+
+.link-btn-solid{
+  display:inline-flex;align-items:center;gap:5px;
+  margin-top:10px;padding:5px 12px;
+  background:var(--blackberry);
+  border:1.5px solid var(--blackberry);
+  border-radius:4px;
+  font-family:'DM Mono',monospace;font-size:10px;
+  color:var(--copper-light);
+  text-decoration:none;
+  cursor:pointer;
+  transition:background 0.18s,color 0.18s;
+}
+.link-btn-solid:hover{background:var(--copper);color:var(--kurobeni);border-color:var(--copper);}
+.link-btn-solid i{font-size:12px;color:var(--copper);}
+.link-btn-solid:hover i{color:var(--kurobeni);}
+
+.btn-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+
+@media(max-width:420px){
+  .window-body{padding:14px 12px 22px;}
+  .profile-name{font-size:22px;}
+  .avatar-frame{width:64px;height:64px;font-size:20px;}
+  .two-col{grid-template-columns:1fr;}
+  .cert-two-col{grid-template-columns:1fr;}
+  .portfolio-bar{flex-direction:column;align-items:flex-start;gap:4px;}
+  .portfolio-link{margin-left:0;}
+}
+</style>
+
+
+<h2 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);">Mobile-responsive student resume, copper and blackberry palette</h2>
+
+<div class="resume-wrap">
+  <div class="grid-bg"></div>
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+  <span class="deco-star" style="top:12px;left:56px;font-size:18px;">✿</span>
+  <span class="deco-star" style="top:48px;left:30px;font-size:11px;opacity:0.6;">✿</span>
+  <span class="deco-star" style="bottom:50px;right:56px;font-size:16px;opacity:0.7;">✿</span>
+  <div class="deco-circle" style="top:90px;right:16px;width:26px;height:26px;"></div>
+  <div class="deco-circle" style="bottom:130px;left:14px;width:18px;height:18px;"></div>
+
+  <div class="os-window">
+    <div class="titlebar">
+      <div class="tb-title">RESUME</div>
+      <i class="ti ti-layout-dashboard" style="font-size:13px;color:var(--meadow);" aria-hidden="true"></i>
+    </div>
+
+    <div class="window-body">
+
+      <div class="profile-section">
+        <div class="profile-info">
+          <div class="profile-name">Kaustuva Kashyap</div>
+          <div class="profile-title">Five years integrated masters program · Software Development · 2nd Year</div>
+          <div class="contact-row">
+            <div class="contact-chip"><i class="ti ti-mail" aria-hidden="true"></i> kaustuvakashyap20@gmail.com</div>
+            <div class="contact-chip"><i class="ti ti-brand-github" aria-hidden="true"></i>github.com/kaustuvakashyap</div>
+            <div class="contact-chip"><i class="ti ti-map-pin" aria-hidden="true"></i> Guwahati, India</div>
+            <div class="contact-chip"><i class="ti ti-phone" aria-hidden="true"></i> +91 7578936826</div>
+          </div>
+
+      <hr class="divider">
+
+      <div class="two-col">
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-label">About me</span>
+            <div class="panel-icons"><div class="panel-icon"></div><div class="panel-icon"></div></div>
+          </div>
+          <div class="panel-body">
+            <p class="about-text">A curious second year software dev student with a love for building things that work and occasionally things that don't, until they do. Dedicated to developing frontend technologies and user-centered design practices. Focused on enhancing user experience through modern UI/UX design techniques. </p>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-header">
+            <span class="panel-label">Skills</span>
+            <div class="panel-icons"><div class="panel-icon"></div><div class="panel-icon"></div></div>
+          </div>
+          <div class="panel-body">
+            <div class="skill-grid">
+              <div class="skill-row"><span class="skill-name">Figma</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%"></div></div></div>
+              <div class="skill-row"><span class="skill-name">HTML and CSS</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:70%"></div></div></div>
+              <div class="skill-row"><span class="skill-name">Javascript</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:65%"></div></div></div>
+              <div class="skill-row"><span class="skill-name">Data Structures</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:80%"></div></div></div>
+              <div class="skill-row"><span class="skill-name">Python</span><div class="skill-bar-track"><div class="skill-bar-fill" style="width:55%"></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-label">What I've learned · Courses &amp; Knowledge</span>
+          <div class="panel-icons"><div class="panel-icon"></div><div class="panel-icon"></div></div>
+        </div>
+        <div class="panel-body">
+          <span class="course-tag">Data Structures &amp; Algorithms</span>
+          <span class="course-tag">C Language</span>
+          <span class="course-tag">Database Management Systems</span>
+          <span class="course-tag">Computer Networks</span>
+          <span class="course-tag">Object-Oriented Programming with C++</span>
+          <span class="course-tag">Java</span>
+          <span class="course-tag">Python</span>
+          <span class="course-tag">Software Engineering</span>
+          <span class="course-tag">Web Development</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-label">Certification &amp; Badges</span>
+          <div class="panel-icons"><div class="panel-icon"></div><div class="panel-icon"></div></div>
+        </div>
+        <div class="panel-body">
+          <div class="cert-two-col">
+            <div class="cert-card">
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <i class="ti ti-certificate" style="font-size:20px;color:var(--copper);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>
+                <div>
+                  <div class="cert-name">Solution Challenge: Achievement Certificate</div>
+                  <div class="cert-issuer">Issued by · Google Developer Groups On Campus · 2025</div>
+                  <!-- 🔗 CERTIFICATE LINK BUTTON — replace href with your certificate URL -->
+                  <div class="btn-row">
+                    <a href="img.jpeg" target="_blank" class="link-btn-solid">
+                      <i class="ti ti-external-link"></i> View Certificate
+                    </a>
+                  </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cert-card">
+              <div style="display:flex;align-items:flex-start;gap:10px;">
+                <i class="ti ti-brand-google" style="font-size:20px;color:var(--copper);flex-shrink:0;margin-top:2px;" aria-hidden="true"></i>
+                <div style="flex:1;min-width:0;">
+                  <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:2px;">
+                    <div class="badges-count">Google</div>
+                    <div class="badges-label"> Cloud<br>Skill Badges</div>
+                    </div>
+                  <!-- 🔗 GOOGLE CLOUD BADGES LINK — replace href with your public profile URL -->
+                  <div class="btn-row">
+                    <a href="https://www.credly.com/badges/b93f04e8-f7ac-403f-a38c-104d44f83dae/public_url" target="_blank" class="link-btn-solid">
+                      <i class="ti ti-brand-google"></i> View All Badges
+                    </a>
+                  </div>
+                  </div>
+                 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-label">Projects</span>
+          <div class="panel-icons"><div class="panel-icon"></div><div class="panel-icon"></div></div>
+        </div>
+        <div class="panel-body">
+          <div class="project-card">
+            <div class="project-name">Project One — NOVA: Mock University Website</div>
+            <div class="project-tag">Academic · 2026</div>
+            <div class="project-desc">Nova is a GUI-centric mock university website built using core web technologies — HTML5, CSS3, and vanilla JavaScript. The project simulates a real-world university portal with a strong emphasis on layout structure, visual hierarchy, design consistency, and intuitive navigation. Rather than prioritizing backend functionality, Nova concentrates on how users perceive, navigate, and interact with a digital academic environment. </div>
+            <!-- 🔗 PROJECT 1 GITHUB BUTTON — replace href with your repo URL -->
+            <div class="btn-row">
+              <a href="https://github.com/Gargee1989/Nova" target="_blank" class="link-btn">
+                <i class="ti ti-brand-github"></i> View on GitHub
+              </a>
+              <a href=" https://gargee1989.github.io/Nova/" target="_blank" class="link-btn">
+                <i class="ti ti-player-play"></i> Live Demo
+              </a>
+            </div>
+          </div>
+          <div class="project-card">
+            <div class="project-name">Project Two — Mridangini: E-commerce Website</div>
+            <div class="project-tag">Academic · 2026</div>
+            <div class="project-desc">Mridangini is an e-commerce platform built not just to sell, but to celebrate — carrying forward the living musical traditions of Assam and the Northeast into the digital age. Built as a fully functional web application with dedicated pages for product cataloguing, user authentication, order management, and customer support, the platform delivers a complete end-to-end shopping experience. It features a category-based shop with individual product listings, an account creation and login system, a cart and checkout flow, and a contact form for direct customer engagement. </div>
+             <!-- 🔗 PROJECT 1 GITHUB BUTTON — replace href with your repo URL -->
+            <div class="btn-row">
+              <a href="https://github.com/The3AMOrg/mridangini" target="_blank" class="link-btn">
+                <i class="ti ti-brand-github"></i> View on GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-label">Education</span>
+          <div class="panel-icons"><div class="panel-icon"></div><div class="panel-icon"></div></div>
+        </div>
+        <div class="panel-body">
+          <div class="edu-block" style="margin-bottom:12px;">
+            <div class="edu-year">2024 –<br>present</div>
+            <div>
+              <div class="edu-name">BS/MS in Software Development</div>
+              <div class="edu-sub">Gauhati University</div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
